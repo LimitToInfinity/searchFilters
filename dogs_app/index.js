@@ -1,4 +1,13 @@
-fetch("http://localhost:3000/dogs")
+const queryParams = new URLSearchParams(window.location.search);
+const searchTerm = queryParams.get("search");
+
+let dogsURL = "http://localhost:3000/dogs";
+
+if (searchTerm) {
+    dogsURL = `http://localhost:3000/dogs?search=${searchTerm}`
+}
+
+fetch(dogsURL)
     .then(parseJSON)
     .then(displayDogs)
 
